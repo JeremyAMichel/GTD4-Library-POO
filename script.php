@@ -1,9 +1,14 @@
 <?php
 
 // Inclure les classes ici (Book, LibraryDB)
+require_once 'Classes/Book.php';
+require_once 'Classes/LibraryDB.php';
+
+use Classes\Book;
+use Classes\LibraryDB;
 
 $dsn = 'mysql:host=localhost;dbname=library_db;charset=utf8';
-$username = ''; // Ajouter votre nom d'utilisateur de bdd local (Exemple : root)
+$username = 'root'; // Ajouter votre nom d'utilisateur de bdd local (Exemple : root)
 $password = ''; // Ajouter votre mot de passe de bdd local
 
 try {
@@ -34,9 +39,9 @@ if (isset($_SERVER['argv']) && count($_SERVER['argv']) > 1) {
 
                 $book = new Book($title, $author, $pages, $isbn);
                 $libraryDb->addBookToDB($book);
-                echo "Livre ajouté : {$title}\n";
+                echo "Livre ajouté à la BDD : {$title}\n";
             } else {
-                echo "Utilisation : php script.php add \"Titre\" \"Auteur\" Pages ISBN\n";
+                echo "Utilisation : php script.php add \"Titre\" \"Auteur\" Pages \"ISBN\"\n";
             }
             break;
 
@@ -46,7 +51,7 @@ if (isset($_SERVER['argv']) && count($_SERVER['argv']) > 1) {
                 $libraryDb->removeBookFromDB($isbn);
                 echo "Livre supprimé avec ISBN : {$isbn}\n";
             } else {
-                echo "Utilisation : php script.php remove ISBN\n";
+                echo "Utilisation : php script.php remove \"ISBN\"\n";
             }
             break;
 
