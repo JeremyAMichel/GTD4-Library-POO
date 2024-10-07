@@ -31,6 +31,10 @@ L'objectif est de réviser la Programmation Orientée Objet (POO) en PHP tout en
 **💡 Exemple de code :**
 
 ```php
+<?php
+
+namespace Classes;
+
 class Book {
     private string $title;
 
@@ -39,12 +43,14 @@ class Book {
         $this->title = $title;
     }
 
-    public function __toString(): void 
+    public function __toString(): string 
     {
-        echo "Title: {$this->title}, ..." . PHP_EOL;
+        return "Title: {$this->title}, ..." . PHP_EOL;
     }
 }
 ```
+
+**Note :** Un **namespace** en PHP sert à organiser le code et éviter les conflits de noms entre les classes, fonctions, ou constantes. C'est particulièrement utile lorsque tu travailles sur des projets avec plusieurs bibliothèques ou des morceaux de code provenant de différentes sources, car cela permet de gérer les classes ayant des noms identiques sans entrer en conflit.
 
 ### 🏛️ Étape 2 : Créer la classe `Library`
 
@@ -74,7 +80,7 @@ Essayez de voir si vous arrivez à concevoir le code ! Je vous montrerais un exe
 
 ### 💾 Étape 4 : Créer la classe `LibraryDB`
 
-Cette classe devra étendre **Library** et ajouter des méthodes pour interagir avec la base de données via PDO :
+Cette classe devra hériter de **Library** et ajouter des méthodes pour interagir avec la base de données via PDO :
 
 * ➕ Ajouter un livre à la base de données.
 * 🗑️ Supprimer un livre de la base.
@@ -82,6 +88,10 @@ Cette classe devra étendre **Library** et ajouter des méthodes pour interagir 
 
 **💡 Exemple de code :**
 ```php
+<?php
+
+namespace Classes;
+
 class LibraryDB extends Library {
     private PDO $pdo;
 
